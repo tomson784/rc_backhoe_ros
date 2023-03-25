@@ -1,0 +1,14 @@
+<?xml version="1.0" ?>
+<launch>
+  <!-- <arg name="model" default="$(find rc_backhoe_description)/urdf/rc_backhoe.xacro" />
+  <param name="robot_description" textfile="$(arg model)" /> -->
+
+  <!-- gazebo world -->
+  <include file="$(find rc_backhoe_description)/launch/gazebo.launch">
+  </include>
+
+  <!-- gazebo model -->
+  <!-- <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-param robot_description -urdf -model rc_backhoe" /> -->
+  <rosparam file="$(find rc_backhoe_control)/config/rc_backhoe_trajectory_controller.yaml" command="load"/>
+  <node name="rc_backhoe_controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen" args="rc_backhoe_trajectory_controller joint_state_controller"/>
+</launch>

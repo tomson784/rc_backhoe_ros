@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+
+  <param name="robot_description" command="$(find xacro)/xacro $(find rc_backhoe_description)/urdf/rc_backhoe.xacro"/>
+  <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-param robot_description -urdf -model rc_backhoe"/>
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="paused" value="false"/>
+    <arg name="use_sim_time" value="true"/>
+    <arg name="gui" value="false"/>
+    <arg name="headless" value="false"/>
+    <arg name="debug" value="false"/>
+  </include>
+
+  <param name="hztest_imu_gazebo/topic" value="/rc_backhoe/swing/imu/data_raw" />
+  <param name="hztest_imu_gazebo/hz" value="10.0" />
+  <param name="hztest_imu_gazebo/hzerror" value="5.0" />
+  <param name="hztest_imu_gazebo/test_duration" value="5.0" />
+  <test test-name="hztest_imu_gazebo" pkg="rostest" type="hztest" name="hztest_imu_gazebo" />
+
+</launch>

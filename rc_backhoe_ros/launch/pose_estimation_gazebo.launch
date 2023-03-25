@@ -1,0 +1,37 @@
+<launch>
+    <include file="$(find rc_backhoe_description)/launch/gazebo.launch">
+    </include>
+
+    <group ns="swing">
+        <node pkg="imu_filter_madgwick" type="imu_filter_node" name="imu_filter_node">
+            <param name="use_mag" value="false" />
+            <param name="publish_tf" value="true" />
+            <param name="fixed_frame" value="map" />
+        </node>
+    </group>
+    <group ns="boom">
+        <node pkg="imu_filter_madgwick" type="imu_filter_node" name="imu_filter_node">
+            <param name="use_mag" value="false" />
+            <param name="publish_tf" value="true" />
+            <param name="fixed_frame" value="map" />
+        </node>
+    </group>
+    <group ns="arm">
+        <node pkg="imu_filter_madgwick" type="imu_filter_node" name="imu_filter_node">
+            <param name="use_mag" value="false" />
+            <param name="publish_tf" value="true" />
+            <param name="fixed_frame" value="map" />
+        </node>
+    </group>
+    <group ns="bucket">
+        <node pkg="imu_filter_madgwick" type="imu_filter_node" name="imu_filter_node">
+            <param name="use_mag" value="false" />
+            <param name="publish_tf" value="true" />
+            <param name="fixed_frame" value="map" />
+        </node>
+    </group>
+
+    <node name="joint_publisher_from_imu" pkg="rc_backhoe_state" type="joint_publisher_from_imu.py" output="screen">
+    </node>
+
+</launch>

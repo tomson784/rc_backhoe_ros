@@ -1,0 +1,10 @@
+controller_list:
+  - name: rc_backhoe_controller
+    action_ns: follow_joint_trajectory
+    type: FollowJointTrajectory
+    default: True
+    joints:
+      - swing_joint
+      - boom_joint
+      - arm_joint
+      - bucket_joint

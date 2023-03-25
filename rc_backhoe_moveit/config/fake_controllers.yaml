@@ -1,0 +1,13 @@
+controller_list:
+  - name: fake_rc_backhoe_controller
+    type: $(arg fake_execution_type)
+    joints:
+      - swing_joint
+      - boom_joint
+      - arm_joint
+      - bucket_joint
+initial:  # Define initial robot poses per group
+#  - group: rc_backhoe
+#    pose: home
+
+  []
